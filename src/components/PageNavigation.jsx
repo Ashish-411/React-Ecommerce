@@ -1,0 +1,24 @@
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
+function PageNavigation({title}){
+    return(
+        <Wrapper>
+            <NavLink to="/">Home</NavLink>/{title}
+        </Wrapper>
+    );
+
+}
+export default PageNavigation;
+const Wrapper = styled.section`
+  height: 10rem;
+  background-color: #b7b8b6;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 2.2rem;
+  padding-left: 1.2rem;
+
+  a {
+    font-size: 3.2rem;
+  }
+`;
