@@ -16,24 +16,27 @@ import Footer from "./components/Footer";
 //---------/Components---------
 //----------Contexts-----------
 import { AppProvider } from "./context/productContext";
+import { FilterContextProvider } from "./context/filter_context";
 //----------/Contexts---------
 
 function App() {
   return (
     <>
       <AppProvider>
-        <GlobalStyle/>
-        <Header/>
-          <Routes>
-            <Route path="/" element={<Home/>}></Route>
-            <Route path="/about" element={<About/>}></Route>
-            <Route path="/products" element={<Products/>}></Route>
-            <Route path="/contact" element={<Contact/>}></Route>
-            <Route path="/singleproduct/:id" element={<SingleProduct/>}></Route>
-            <Route path="/cart" element={<Cart/>}></Route>
-            <Route path="*" element={<ErrorPage/>}></Route>
-          </Routes>
-          <Footer/>
+        <FilterContextProvider>
+          <GlobalStyle/>
+          <Header/>
+            <Routes>
+              <Route path="/" element={<Home/>}></Route>
+              <Route path="/about" element={<About/>}></Route>
+              <Route path="/products" element={<Products/>}></Route>
+              <Route path="/contact" element={<Contact/>}></Route>
+              <Route path="/singleproduct/:id" element={<SingleProduct/>}></Route>
+              <Route path="/cart" element={<Cart/>}></Route>
+              <Route path="*" element={<ErrorPage/>}></Route>
+            </Routes>
+            <Footer/>
+        </FilterContextProvider>
       </AppProvider>
     </>
   )
