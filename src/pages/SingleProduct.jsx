@@ -76,7 +76,7 @@ function SingleProduct(){
                 </div>
                 <p className="product-category">{category}</p>
                  <hr/>
-                 <AddToCart/>
+                 <AddToCart product={singleProduct}/>
               </div>
             </div>
           </Container>

@@ -3,7 +3,11 @@ import styled from "styled-components";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import {Button} from "../styles/Button";
-function AddToCart(){
+import { useCartContext } from "../context/cart_context";
+function AddToCart({product}){
+  const {CartAdd} = useCartContext();
+
+  const {id} = product;
   const [amount,setAmount] = useState(1);
   const setDecrease=()=>{
     amount > 1? setAmount(amount-1) : setAmount(1);
@@ -22,7 +26,8 @@ function AddToCart(){
             <FaPlus/>
           </button>
         </div>
-        <NavLink to="/cart">
+        <NavLink to="/cart"
+        onClick={()=> CartAdd(id, amount, product)}>
         <Button>Add to cart</Button>
         </NavLink>
       </Wrapper>
