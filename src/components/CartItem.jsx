@@ -3,15 +3,7 @@ import { FormatPrice } from "../Helpers/FormatPrice";
 import { FaMinus, FaPlus, FaTrash } from "react-icons/fa";
 
 function CartItem({id,name,image,price,amount}){
-    const {removeItem} = useCartContext();
-    const setDecrease=()=>{
-        console.log("hi");
-    // amount > 1? setAmount(amount-1) : setAmount(1);
-  }
-  const setIncrease=()=>{
-    console.log("hello");
-    // setAmount(amount+1);
-  }
+    const {removeItem,setIncrease,setDecrease} = useCartContext();
     return(
         <div className="cart_heading grid grid-five-column">
             <div className="cart-image--name">
@@ -30,11 +22,11 @@ function CartItem({id,name,image,price,amount}){
             </div>
             {/* quantity */}
             <div className="amount-toggle">
-                      <button onClick={() => setDecrease()}>
+                      <button onClick={() => setDecrease(id)}>
                         <FaMinus/>
                       </button>
                       <div className="amount-style">{amount}</div>
-                      <button onClick={() => setIncrease()}>
+                      <button onClick={() => setIncrease(id)}>
                         <FaPlus/>
                       </button>
             </div>

@@ -3,6 +3,46 @@ import styled from "styled-components";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgClose, CgMenu } from "react-icons/cg";
 import { useState } from "react";
+import {useCartContext} from "../context/cart_context";
+
+function Nav(){
+    const[menuIcon,setMenuIcon] = useState();
+    const {total_item} = useCartContext();
+    return(
+        <NavWrapper>
+            <div className={menuIcon ? "navbar active" : "navbar"}>
+                <ul className="navbar-lists">
+                    <li>
+                        <NavLink to="/" className="navbar-link" onClick={()=>setMenuIcon(false)}>Home</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/about" className="navbar-link" onClick={()=>setMenuIcon(false)}>About</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/products" className="navbar-link" onClick={()=>setMenuIcon(false)}>Products</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/contact" className="navbar-link" onClick={()=>setMenuIcon(false)}>Contact</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/cart" className="navbar-link cart-trolley--link" onClick={()=>setMenuIcon(false)}>
+                        <FiShoppingCart className="cart-trolley" />
+                        <span className="cart-total--item">{total_item}</span>
+                        </NavLink>
+                    </li>
+                </ul>
+                {/* Buttons for responsive navbar */}
+                <div className="mobile-navbar-btn">
+                    <CgMenu name="menu-outline" className="mobile-nav-icon"
+                    onClick={()=>setMenuIcon(true)}/>
+                    <CgClose name="close-outline" className="mobile-nav-icon close-outline"
+                    onClick={()=>setMenuIcon(false)}/>
+                </div>
+            </div>
+        </NavWrapper>
+    );
+};
+export default Nav;
 const NavWrapper = styled.nav`
 .navbar{
     height:100%;
@@ -161,40 +201,3 @@ const NavWrapper = styled.nav`
   }
 }
 `;
-function Nav(){
-    const[menuIcon,setMenuIcon] = useState();
-    return(
-        <NavWrapper>
-            <div className={menuIcon ? "navbar active" : "navbar"}>
-                <ul className="navbar-lists">
-                    <li>
-                        <NavLink to="/" className="navbar-link" onClick={()=>setMenuIcon(false)}>Home</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/about" className="navbar-link" onClick={()=>setMenuIcon(false)}>About</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/products" className="navbar-link" onClick={()=>setMenuIcon(false)}>Products</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/contact" className="navbar-link" onClick={()=>setMenuIcon(false)}>Contact</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/cart" className="navbar-link cart-trolley--link" onClick={()=>setMenuIcon(false)}>
-                        <FiShoppingCart className="cart-trolley" />
-                        <span className="cart-total--item">10</span>
-                        </NavLink>
-                    </li>
-                </ul>
-                {/* Buttons for responsive navbar */}
-                <div className="mobile-navbar-btn">
-                    <CgMenu name="menu-outline" className="mobile-nav-icon"
-                    onClick={()=>setMenuIcon(true)}/>
-                    <CgClose name="close-outline" className="mobile-nav-icon close-outline"
-                    onClick={()=>setMenuIcon(false)}/>
-                </div>
-            </div>
-        </NavWrapper>
-    );
-};
-export default Nav;
